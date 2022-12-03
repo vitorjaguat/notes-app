@@ -76,11 +76,16 @@ function addNewNote(text = '') {
 
   //saving when click outside of note
   document.body.addEventListener('click', (e) => {
-    console.log(e.target);
     if (e.target === document.body) {
       main.classList.remove('hidden');
       textArea.classList.add('hidden');
     }
+  });
+
+  //edit when click inside of note
+  main.addEventListener('click', () => {
+    textArea.classList.remove('hidden');
+    main.classList.add('hidden');
   });
 
   textArea.addEventListener('input', (e) => {
