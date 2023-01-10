@@ -67,6 +67,7 @@ function addNewNote(text = '') {
   editBtn.addEventListener('click', () => {
     textArea.classList.remove('hidden');
     main.classList.add('hidden');
+    textArea.focus();
   });
 
   saveBtn.addEventListener('click', () => {
@@ -88,6 +89,7 @@ function addNewNote(text = '') {
     main.classList.add('hidden');
   });
 
+  //create main from textarea
   textArea.addEventListener('input', (e) => {
     const { value } = e.target;
     main.innerHTML = marked.parse(value);
@@ -112,6 +114,10 @@ function addNewNote(text = '') {
 function updateLS() {
   const notesText = document.querySelectorAll('textarea');
   const notes = [];
-  notesText.forEach((note) => notes.push(note.value));
+  notesText.forEach((note) => {
+    if (note.value.trim() !== 0) {
+      notes.push(note.value);
+    }
+  });
   localStorage.setItem('notes', JSON.stringify(notes));
 }
